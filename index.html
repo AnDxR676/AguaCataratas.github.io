@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cataratas - Botellas de Agua 100% pura</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Celeste */
+            color: #006064; /* Azul cristalino */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            background-attachment: fixed;
+        }
+
+        /* Efecto Parallax para el fondo */
+        header {
+            background-color: #00bcd4;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        header .logo {
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* Poem Section */
+        .poema {
+            background-color: #ffffff;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 15px;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-style: italic;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        .poema.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .poema h2 {
+            font-size: 2em;
+            color: #00bcd4;
+        }
+        .poema p {
+            font-size: 1.2em;
+            color: #006064;
+            line-height: 1.6;
+        }
+
+        /* Product Section */
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .product {
+            background-color: #ffffff;
+            border-radius: 15px;
+            width: 300px;
+            margin: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        .product.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .product img {
+            width: 100%;
+            border-radius: 15px 15px 0 0;
+        }
+        .product h3 {
+            color: #00bcd4;
+            font-size: 1.5em;
+            margin: 15px 0;
+        }
+        .product p {
+            font-size: 1.1em;
+            color: #006064;
+            margin-bottom: 10px;
+        }
+        .product .price {
+            font-size: 1.2em;
+            color: #00bcd4;
+            font-weight: bold;
+        }
+
+        /* Modal (Ventana emergente) */
+        .modal {
+            display: none; /* Inicialmente oculto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro */
+            overflow: auto;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            font-size: 1.8em;
+            color: #00bcd4;
+        }
+        .close {
+            font-size: 2em;
+            cursor: pointer;
+            color: #006064;
+        }
+        .modal img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .modal p {
+            color: #006064;
+        }
+        .modal .price {
+            font-size: 1.5em;
+            color: #00bcd4;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #00bcd4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.2em;
+        }
+
+        /* Button Style */
+        .btn {
+            background-color: #006064;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #00bcd4;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Cataratas</div>
+        <p>Botellas de Agua Purificada - Refresca tu vida con cada sorbo</p>
+    </header>
+
+    <!-- Poem Section -->
+    <section class="poema">
+        <h2>Un Poema para Ti</h2>
+        <p>
+            "Cataratas de vida, cristal y frescura,<br>
+            el agua pura, esencia y ternura.<br>
+            De cada gota, un respiro de paz,<br>
+            en cada botella, la naturaleza en su faz.<br>
+            Cataratas, un suspiro que refresca el alma,<br>
+            en cada sorbo, calma y calma."
+        </p>
+    </section>
+
+    <!-- Product Section -->
+    <section class="products">
+        <div class="product">
+            <img src="images/botella1.jpg" alt="Botella Cataratas 1">
+            <h3>Botella Cataratas 1</h3>
+            <p>Elegante y fresca, perfecta para cualquier momento.</p>
+            <p class="price">$15.99</p>
+            <a href="javascript:void(0)" class="btn" onclick="openModal(1)">Ver Detalles</a>
+        </div>
+        <div class="product">
+            <img src="botella2.jpg" alt="Botella Cataratas 2">
+            <h3>Botella Cataratas 2</h3>
+            <p>Diseño único, funcional y hermoso. Ideal para llevar contigo.</p>
+            <p class="price">$18.99</p>
+            <a href="javascript:void(0)" class="btn" onclick="openModal(2)">Ver Detalles</a>
+        </div>
+        <div class="product">
+            <img src="botella3.jpg" alt="Botella Cataratas 3">
+            <h3>Botella Cataratas 3</h3>
+            <p>La naturaleza capturada en cada gota.</p>
+            <p class="price">$20.99</p>
+            <a href="javascript:void(0)" class="btn" onclick="openModal(3)">Ver Detalles</a>
+        </div>
+    </section>
+
+    <!-- Modal for Product 1 -->
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Botella Cataratas 1</h2>
+                <span class="close" onclick="closeModal(1)">&times;</span>
+            </div>
+            <img src="botella1.jpg" alt="Botella Cataratas 1">
+            <p>Elegante y fresca, perfecta para cualquier momento. Mantén tu agua pura y refrescante en todo momento.</p>
+            <p class="price">$15.99</p>
+            <!-- Formulario de Pedido -->
+            <form action="procesar_pedido.php" method="POST">
+                <input type="hidden" name="producto_id" value="1">
+                <label for="nombre_cliente">Nombre:</label>
+                <input type="text" name="nombre_cliente" required><br><br>
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" required><br><br>
+                <button type="submit" class="btn">Comprar Ahora</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Product 2 -->
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Botella Cataratas 2</h2>
+                <span class="close" onclick="closeModal(2)">&times;</span>
+            </div>
+            <img src="botella2.jpg" alt="Botella Cataratas 2">
+            <p>Diseño único, funcional y hermoso. Ideal para llevar contigo y disfrutar de un sorbo refrescante en cualquier lugar.</p>
+            <p class="price">$18.99</p>
+            <!-- Formulario de Pedido -->
+            <form action="procesar_pedido.php" method="POST">
+                <input type="hidden" name="producto_id" value="2">
+                <label for="nombre_cliente">Nombre:</label>
+                <input type="text" name="nombre_cliente" required><br><br>
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" required><br><br>
+                <button type="submit" class="btn">Comprar Ahora</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Product 3 -->
+    <div class="modal" id="modal3">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Botella Cataratas 3</h2>
+                <span class="close" onclick="closeModal(3)">&times;</span>
+            </div>
+            <img src="botella3.jpg" alt="Botella Cataratas 3">
+            <p>La naturaleza capturada en cada gota. Un diseño minimalista que resalta lo mejor del agua pura y fresca.</p>
+            <p class="price">$20.99</p>
+            <!-- Formulario de Pedido -->
+            <form action="procesar_pedido.php" method="POST">
+                <input type="hidden" name="producto_id" value="3">
+                <label for="nombre_cliente">Nombre:</label>
+                <input type="text" name="nombre_cliente" required><br><br>
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" required><br><br>
+                <button type="submit" class="btn">Comprar Ahora</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Cataratas - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para abrir el modal
+        function openModal(id) {
+            document.getElementById('modal' + id).style.display = "block";
+        }
+
+        // Función para cerrar el modal
+        function closeModal(id) {
+            document.getElementById('modal' + id).style.display = "none";
+        }
+
+        // Añadir clases visibles con un retraso para animación
+        window.addEventListener('DOMContentLoaded', function() {
+            const products = document.querySelectorAll('.product');
+            setTimeout(() => {
+                products.forEach((product, index) => {
+                    setTimeout(() => {
+                        product.classList.add('visible');
+                    }, index * 200); // Incrementar el tiempo de retraso para cada producto
+                });
+            }, 500);
+            
+            // Mostrar el poema con animación
+            const poema = document.querySelector('.poema');
+            setTimeout(() => {
+                poema.classList.add('visible');
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
+
